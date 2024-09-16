@@ -12,20 +12,9 @@ require("./db-connection");
 
 const app = express();
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://code.jquery.com/jquery-3.7.1.min.js"],
-      styleSrc: ["'self'"],
-    },
-  })
-);
-
+app.use(helmet());
 app.use("/public", express.static(process.cwd() + "/public"));
-
 app.use(cors({ origin: "*" })); //For FCC testing purposes only
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
